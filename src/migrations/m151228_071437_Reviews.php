@@ -7,6 +7,7 @@ class m151228_071437_Reviews extends Migration
     public function up() {
         $this->insert('{{%configurable}}', [
             'module' => 'ReviewsExt',
+            'sort_order' => 99,
             'section_name' => 'Reviews Extension',
             'display_in_config' => 0
         ]);
