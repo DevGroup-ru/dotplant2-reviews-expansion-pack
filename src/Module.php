@@ -11,8 +11,8 @@ use yii\base\BootstrapInterface;
 use yii\base\Event;
 use yii\web\View;
 use yii\db\ActiveRecord;
-use \DotPlant\Reviews\behaviors\ReviewsBehavior;
-use \DotPlant\Reviews\handlers\ReviewsHandler;
+use DotPlant\ReviewsExt\behaviors\ReviewsBehavior;
+use DotPlant\ReviewsExt\handlers\ReviewsHandler;
 
 class Module extends ExtensionModule implements BootstrapInterface
 {

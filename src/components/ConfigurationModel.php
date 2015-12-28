@@ -2,7 +2,9 @@
 
 namespace DotPlant\ReviewsExt\components;
 
-class ConfigurationModel extends \app\modules\config\models\BaseConfigurationModel
+use app\modules\config\models;
+
+class ConfigurationModel extends BaseConfigurationModel
 {
     /**
      * Fills model attributes with default values
@@ -22,8 +24,8 @@ class ConfigurationModel extends \app\modules\config\models\BaseConfigurationMod
     {
         return [
             'modules' => [
-                'Reviews' => [
-                    'class' => 'DotPlant\Reviews\Module',
+                'ReviewsReviewsExt' => [
+                    'class' => 'DotPlant\ReviewsExt\Module',
                 ],
             ],
         ];
