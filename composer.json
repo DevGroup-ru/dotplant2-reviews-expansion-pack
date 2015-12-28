@@ -3,6 +3,7 @@
   "description": "DotPlant2 reviews extension module",
   "type": "dotplant2-extension",
   "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "DotPlant\\Reviews\\": "src/"
