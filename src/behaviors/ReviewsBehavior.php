@@ -1,6 +1,6 @@
 <?php
 
-namespace DotPlant\Reviews\behaviors;
+namespace DotPlant\ReviewsExt\behaviors;
 
 use app\models\Form;
 use app\models\Submission;

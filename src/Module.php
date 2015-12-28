@@ -1,6 +1,6 @@
 <?php
 
-namespace DotPlant\Reviews;
+namespace DotPlant\ReviewsExt;
 
 use app\backend\events\BackendEntityEditFormEvent;
 use app\components\ExtensionModule;

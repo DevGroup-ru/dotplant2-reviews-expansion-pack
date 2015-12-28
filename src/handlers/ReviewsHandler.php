@@ -1,6 +1,6 @@
 <?php
 
-namespace DotPlant\Reviews\handlers;
+namespace DotPlant\ReviewsExt\handlers;
 
 use app\models\Submission;
 use app\modules\review\models\Review;

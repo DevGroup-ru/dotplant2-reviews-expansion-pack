@@ -1,6 +1,6 @@
 <?php
 
-namespace DotPlant\Reviews\components;
+namespace DotPlant\ReviewsExt\components;
 
 class ConfigurationModel extends \app\modules\config\models\BaseConfigurationModel
 {
