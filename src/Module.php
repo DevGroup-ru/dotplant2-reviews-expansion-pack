@@ -16,7 +16,6 @@ use \DotPlant\Reviews\handlers\ReviewsHandler;
 
 class Module extends ExtensionModule implements BootstrapInterface
 {
-
     public static $moduleId = 'ReviewsExt';
 
     public function bootstrap($app)
