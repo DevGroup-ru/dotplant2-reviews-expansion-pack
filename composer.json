@@ -1,6 +1,6 @@
 {
-  "name": "dotplant2-reviews",
-  "description": "DotPlant2 reviews",
+  "name": "dotplant/reviews",
+  "description": "DotPlant2 reviews extension module",
   "type": "dotplant2-extension",
   "minimum-stability": "dev",
   "autoload": {
