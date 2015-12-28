@@ -24,7 +24,7 @@ class ConfigurationModel extends BaseConfigurationModel
     {
         return [
             'modules' => [
-                'ReviewsReviewsExt' => [
+                'ReviewsExt' => [
                     'class' => 'DotPlant\ReviewsExt\Module',
                 ],
             ],
