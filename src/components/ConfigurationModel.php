@@ -28,6 +28,9 @@ class ConfigurationModel extends BaseConfigurationModel
                     'class' => 'DotPlant\ReviewsExt\Module',
                 ],
             ],
+            'bootstrap' => [
+                'ReviewsExt' => 'ReviewsExt',
+            ],
         ];
     }
 
