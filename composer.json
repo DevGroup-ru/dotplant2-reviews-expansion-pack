@@ -1,0 +1,11 @@
+{
+  "name": "dotplant2-reviews",
+  "description": "DotPlant2 reviews",
+  "type": "dotplant2-extension",
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "DotPlant\\Reviews\\": "src/"
+    }
+  }
+}
