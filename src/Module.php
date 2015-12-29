@@ -18,6 +18,17 @@ class Module extends ExtensionModule implements BootstrapInterface
 {
     public static $moduleId = 'ReviewsExt';
 
+    public function behaviors()
+    {
+        return [
+            'configurableModule' => [
+                'class' => 'app\modules\config\behaviors\ConfigurableModuleBehavior',
+                'configurationView' => '@ReviewsExt/views/configurable/_config',
+                'configurableModel' => 'DotPlant\ReviewsExt\components\ConfigurationModel',
+            ]
+        ];
+    }
+
     public function bootstrap($app)
     {
 

@@ -2,7 +2,7 @@
 
 namespace DotPlant\ReviewsExt\components;
 
-use app\modules\config\models;
+use app\modules\config\models\BaseConfigurationModel;
 
 class ConfigurationModel extends BaseConfigurationModel
 {
