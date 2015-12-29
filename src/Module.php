@@ -12,7 +12,6 @@ use yii\base\Event;
 use yii\web\View;
 use yii\db\ActiveRecord;
 use DotPlant\ReviewsExt\behaviors\ReviewsBehavior;
-use DotPlant\ReviewsExt\handlers\ReviewsHandler;
 
 class Module extends ExtensionModule implements BootstrapInterface
 {
@@ -35,25 +34,18 @@ class Module extends ExtensionModule implements BootstrapInterface
         $app->on(
             Application::EVENT_BEFORE_ACTION,
             function () use ($app) {
-                /**
-                 * Этот кусок отвечает за добавление пустого submission к отзыву,
-                 * когда отзыв создается в админке
-                 */
-                Event::on(
-                    Review::className(),
-                    ActiveRecord::EVENT_INIT,
-                    [ReviewsBehavior::className(), 'handleInit']
-                );
-                /**
-                 * Здесь мы прикручиваем логику при сохранении отзывов в админке, чтобы иметь возможность
-                 * добавлять свойства к отзыву из админки
-                 */
-                Event::on(
-                    BackendReviewController::className(),
-                    BackendReviewController::EVENT_BEFORE_ACTION,
-                    [ReviewsHandler::className(), 'saveReviewProperties']
-                );
                 if ($app->requestedAction->controller instanceof BackendReviewController) {
+
+                    /**
+                     * Этот кусок отвечает за добавление пустого submission к отзыву,
+                     * когда отзыв создается в админке
+                     */
+                    Event::on(
+                        Review::className(),
+                        ActiveRecord::EVENT_INIT,
+                        [ReviewsBehavior::className(), 'handleInit']
+                    );
+
                     BackendEntityEditFormEvent::on(
                         View::className(),
                         BackendReviewController::BACKEND_REVIEW_EDIT_FORM,
