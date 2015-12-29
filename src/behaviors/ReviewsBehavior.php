@@ -11,29 +11,33 @@ use yii\base\Event;
 use yii\db\AfterSaveEvent;
 use DotPlant\ReviewsExt\handlers\ReviewsHandler;
 
-class ReviewsBehavior extends Behavior {
-
-    public function events() {
+class ReviewsBehavior extends Behavior
+{
+    public function events()
+    {
         return [
             Review::EVENT_AFTER_INSERT => 'handleAfterInsert',
             Review::EVENT_AFTER_UPDATE => 'handleAfterUpdate',
-            Review::EVENT_BEFORE_DELETE => 'handleBeforeDelete',
             Review::EVENT_AFTER_DELETE => 'handleAfterDelete',
         ];
     }
 
-    static public function handleInit(Event $event) {
+    /**
+     * @param Event $event
+     */
+    public static function handleInit(Event $event)
+    {
+        /** @var Review $model */
         $model = $event->sender;
         $model->attachBehaviors([static::className()]);
     }
 
-    public function handleAfterInsert(Event $event) {
-
+    public function handleAfterInsert(Event $event)
+    {
         $review = $this->owner;
         if (null === $form = Form::findById(1)) {
             return;
         }
-
         $submission = new Submission();
         $submission->loadDefaultValues();
         $submission->form_id = $form->id;
@@ -50,7 +54,8 @@ class ReviewsBehavior extends Behavior {
         }
     }
 
-    public function handleAfterUpdate(AfterSaveEvent $event) {
+    public function handleAfterUpdate(AfterSaveEvent $event)
+    {
         /**
          * Здесь мы прикручиваем логику при сохранении отзывов в админке, чтобы иметь возможность
          * добавлять свойства к отзыву из админки
@@ -58,9 +63,13 @@ class ReviewsBehavior extends Behavior {
         ReviewsHandler::saveReviewProperties($event);
     }
 
-    public function handleAfterDelete(Event $event) {
-    }
-
-    public function handleBeforeDelete(Event $event) {
+    public function handleAfterDelete(Event $event)
+    {
+        Submission::updateAll(
+            ['is_deleted' => 1],
+            [
+                'id' => $this->owner->submission_id,
+            ]
+        );
     }
 }
