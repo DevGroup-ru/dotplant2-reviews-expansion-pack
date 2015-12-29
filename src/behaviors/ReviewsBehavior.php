@@ -5,9 +5,10 @@ namespace DotPlant\ReviewsExt\behaviors;
 use app\models\Form;
 use app\models\Submission;
 use app\modules\review\models\Review;
-use app\modules\review\controllers\BackendReviewController;
+use Yii;
 use yii\base\Behavior;
 use yii\base\Event;
+use yii\db\AfterSaveEvent;
 use DotPlant\ReviewsExt\handlers\ReviewsHandler;
 
 class ReviewsBehavior extends Behavior {
@@ -16,7 +17,8 @@ class ReviewsBehavior extends Behavior {
         return [
             Review::EVENT_AFTER_INSERT => 'handleAfterInsert',
             Review::EVENT_AFTER_UPDATE => 'handleAfterUpdate',
-            Review::EVENT_AFTER_DELETE => 'handleAfterDelete'
+            Review::EVENT_BEFORE_DELETE => 'handleBeforeDelete',
+            Review::EVENT_AFTER_DELETE => 'handleAfterDelete',
         ];
     }
 
@@ -48,19 +50,17 @@ class ReviewsBehavior extends Behavior {
         }
     }
 
-    public function handleAfterUpdate(Event $event) {
+    public function handleAfterUpdate(AfterSaveEvent $event) {
         /**
          * Здесь мы прикручиваем логику при сохранении отзывов в админке, чтобы иметь возможность
          * добавлять свойства к отзыву из админки
          */
-        $event->on(
-            BackendReviewController::className(),
-            BackendReviewController::EVENT_BEFORE_ACTION,
-            [ReviewsHandler::className(), 'saveReviewProperties']
-        );
+        ReviewsHandler::saveReviewProperties($event);
     }
 
     public function handleAfterDelete(Event $event) {
+    }
 
+    public function handleBeforeDelete(Event $event) {
     }
 }

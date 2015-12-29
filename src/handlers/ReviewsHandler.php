@@ -5,16 +5,12 @@ namespace DotPlant\ReviewsExt\handlers;
 use app\models\Submission;
 use app\modules\review\models\Review;
 use Yii;
-use yii\base\ActionEvent;
 use yii\base\Object;
+use yii\db\AfterSaveEvent;
 
 class ReviewsHandler extends Object {
 
-    public static function saveReviewProperties(ActionEvent $event) {
-
-        if ('view' != $event->action->id) {
-            return;
-        }
+    public static function saveReviewProperties(AfterSaveEvent $event) {
 
         $submission = null;
         $reviewId = Yii::$app->request->get('id');
